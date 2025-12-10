@@ -1,0 +1,85 @@
+root = true
+
+# All files
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+
+# XML/JSON/YAML
+[*.{csproj,json,yaml,yml}]
+indent_size = 2
+
+# C# files
+[*.cs]
+indent_size = 4
+tab_width = 4
+
+#### C# 14 & .NET 10 Modern Defaults ####
+
+# 1. File-Scoped Namespaces
+# Reduces indentation levels.
+csharp_style_namespace_declarations = file_scoped:warning
+
+# 2. Primary Constructors
+# Allows: public class Service(ILogger log) { ... }
+csharp_style_prefer_primary_constructors = true:suggestion
+
+# 3. Collection Expressions
+# Allows: List<int> x = [1, 2, 3];
+dotnet_style_prefer_collection_expression = true:suggestion
+
+# 4. System.Threading.Lock (New in .NET 9/10)
+csharp_prefer_system_threading_lock = true:suggestion
+
+#### Formatting & Braces ####
+
+# 5. ALLOW single-line statements
+# Allows: if (x is null) return;
+# Prevents the IDE0011 warning you saw earlier.
+csharp_prefer_braces = when_multiline:suggestion
+
+# New Lines
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+
+#### Imports ####
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
+
+#### Naming Conventions ####
+
+# Async methods should end with 'Async'
+dotnet_naming_rule.async_methods_end_in_async.symbols = any_async_methods
+dotnet_naming_rule.async_methods_end_in_async.style = end_in_async
+dotnet_naming_rule.async_methods_end_in_async.severity = suggestion
+
+dotnet_naming_symbols.any_async_methods.applicable_kinds = method
+dotnet_naming_symbols.any_async_methods.applicable_accessibilities = *
+dotnet_naming_symbols.any_async_methods.required_modifiers = async
+
+dotnet_naming_style.end_in_async.required_prefix =
+dotnet_naming_style.end_in_async.required_suffix = Async
+dotnet_naming_style.end_in_async.word_separator =
+dotnet_naming_style.end_in_async.capitalization = pascal_case
+
+# Interfaces start with I
+dotnet_naming_rule.interface_should_be_begins_with_i.severity = warning
+dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
+dotnet_naming_rule.interface_should_be_begins_with_i.style = begins_with_i
+
+dotnet_naming_symbols.interface.applicable_kinds = interface
+dotnet_naming_symbols.interface.required_modifiers =
+dotnet_naming_style.begins_with_i.required_prefix = I
+dotnet_naming_style.begins_with_i.capitalization = pascal_case
+
+#### Null Checking & Pattern Matching ####
+dotnet_style_coalesce_expression = true:suggestion
+dotnet_style_null_propagation = true:suggestion
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_prefer_switch_expression = true:suggestion

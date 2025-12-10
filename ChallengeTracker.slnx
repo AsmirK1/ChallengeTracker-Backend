@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="ChallengeTracker.Api/ChallengeTracker.Api.csproj" />
+    <Project Path="ChallengeTracker.Application/ChallengeTracker.Application.csproj" />
+    <Project Path="ChallengeTracker.Infrastructure/ChallengeTracker.Infrastructure.csproj" />
+    <Project Path="ChallengeTracker.Models/ChallengeTracker.Models.csproj" />
+  </Folder>
+</Solution>
