@@ -17,10 +17,20 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+
+    // Create a scope to get AppDbContext
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    // Applies any pending migrations
+    db.Database.Migrate();
+
+    // Runs the seeder
+    DbInitializer.Initialize(db);
 }
 
 // Enables HTTPS redirection
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 // Enables authentication and authorization
 app.UseAuthentication();
